@@ -3,23 +3,15 @@ pipeline {
     stages {
         stage ("clone") {
             steps {
-                echo "cloning file from github"
-                checkout scm 
+                echo "cloning the code from Github"
+                checkout scm
             }
         }
-        stage ("deploy") {
+        stage ("Deploy") {
             steps {
-                echo "deploying the code"
-                sh "cp /var/lib/jenkins/workspace/${JOB_NAME}/index.html /var/www/html/"
+                echo "Deploy the code"
+                sh "sudo cp -r /var/lib/jenkins/workspace/Job-1/index.html /var/www/html/"
             }
-        }
-    }
-    post {
-        success {
-            echo "build has been successfully completed"
-        }
-        failure {
-            echo "build has been failed"
         }
     }
 }
